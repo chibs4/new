@@ -1,0 +1,88 @@
+﻿{% load static %}
+<!DOCTYPE HTML>
+<!-- BEGIN html -->
+<html lang="en">
+<!-- BEGIN head -->
+<head>
+    <title>{{slug|title}} | Wcbsports</title>
+    {% include 'chunks/header.html' %}
+    <!-- BEGIN body -->
+    <!-- <body> -->
+    <!-- BEGIN .content -->
+    <div class="content">
+
+        <!-- BEGIN .wrapper -->
+        <div class="wrapper">
+
+            <div class="content-wrapper">
+
+                <!-- BEGIN .composs-main-content -->
+                <div class="composs-main-content composs-main-content-s-1">
+
+                    <!-- BEGIN .composs-panel -->
+                    <div class="composs-panel">
+
+                        <div class="composs-panel-title" data-ot-css="border-color: #dd4b39;">
+                            <strong data-ot-css="background-color: #dd4b39;">{{slug|title}}</strong>
+                        </div>
+
+                        <div class="composs-panel-inner">
+
+                            <div class="composs-blog-list lets-do-1">
+
+                                {%for article in page_obj %}
+                                <div class="item">
+                                    <div class="item-header">
+                                        <a href="#" class="img-read-later-button">Read later</a>
+                                        <a href="post.html"><img src="{{article.main_image.url}}" alt=""></a>
+                                    </div>
+                                    <div class="item-content">
+                                        <h2><a href="{% url 'post' article.slug %}">{{article.name}}</a></h2>
+                                        <span class="item-meta">
+													<span class="item-meta-item"><i
+                                                            class="material-icons">access_time</i>{{article.pub_date}}</span>
+												</span>
+                                        <p>{{article.short_description|safe}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                        <!--                        <div class="composs-panel-pager">-->
+                        <!--                            <a class="prev page-numbers" href="#"><i class="fa fa-angle-double-left"></i>Previous</a>-->
+                        <!--                            <a class="page-numbers" href="#">1</a>-->
+                        <!--                            <span class="page-numbers current">2</span>-->
+                        <!--                            <a class="page-numbers" href="#">3</a>-->
+                        <!--                            <a class="page-numbers" href="#">4</a>-->
+                        <!--                            <a class="page-numbers" href="#">5</a>-->
+                        <!--                            <a class="next page-numbers" href="#">Next<i class="fa fa-angle-double-right"></i></a>-->
+                        <!--                        </div>-->
+
+                        <!--                        <div class="composs-panel-pager">-->
+                        <!--                            <a href="#" class="composs-pager-button">View more articles</a>-->
+                        <!--                        </div>-->
+
+                        {% include 'chunks/pagination.html'%}
+
+                        <!-- END .composs-panel -->
+                    </div>
+
+                    <!-- END .composs-main-content -->
+                </div>
+
+                {% include 'chunks/sidebar.html' %}
+            </div>
+
+            <!-- END .wrapper -->
+
+        </div>
+
+        <!-- BEGIN .content -->
+    </div>
+    </div>
+    {%include 'chunks/footer.html'%}
+    </body>
+    <!-- END html -->
+</html>

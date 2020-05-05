@@ -1,0 +1,252 @@
+﻿{% load static %}
+<!DOCTYPE HTML>
+<!-- BEGIN html -->
+<html lang="en">
+<head>
+    <title>Wcbsports|Post</title>
+    {% include 'chunks/header.html' %}
+    <!-- BEGIN body -->
+    <!-- <body> -->
+
+
+    <!-- BEGIN .content -->
+    <div class="content">
+
+        <!-- BEGIN .wrapper -->
+        <div class="wrapper">
+
+            <div class="content-wrapper">
+
+                <!-- BEGIN .composs-main-content -->
+                <div class="composs-main-content composs-main-content-s-1">
+
+                    <div class="theiaStickySidebar">
+
+                        <!-- BEGIN .composs-panel -->
+                        <div class="composs-panel">
+
+                            <!-- <div class="composs-panel-title">
+                                <strong>Blog page style #1</strong>
+                            </div> -->
+
+                            <div class="composs-panel-inner">
+
+                                <div class="composs-main-article-content">
+
+                                    <h1>{{article.name|title}}</h1>
+
+                                    <div class="composs-main-article-head">
+                                        <div class="composs-main-article-media">
+                                            <img src="{{article.main_image.url}}" alt="">
+                                        </div>
+                                        <div class="composs-main-article-meta">
+                                            <span class="item"><i class="material-icons">access_time</i>{{article.pub_date}}</span>
+                                            <a href="#comments" class="item"><i class="material-icons">chat_bubble_outline</i>
+                                                Comments</a>
+                                            <span class="item"><i class="material-icons">folder_open</i>
+                                                {% for category in article.categories.all %}
+                                                <a href="{% url 'category' category %}">{{category}}</a>
+                                                {% endfor %}
+                                            </span>
+                                        </div>
+                                        <p>{{article.short_description|safe}}</p>
+                                    </div>
+
+                                    <div class="shortcode-content">
+                                        {{article.content|safe}}
+                                    </div>
+
+
+                                    <div class="composs-tag-list">
+                                        {% for category in article.categories.all %}
+                                        <a href="{% url 'category' category %}">{{category}}</a>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="composs-author-block">
+                                        <div class="item-header">
+                                            <a href="#"><img src="{{article.author.avatar.url}}" alt=""></a>
+                                        </div>
+                                        <div class="item-content">
+                                            <strong>{{article.author.name}}</strong>
+                                            <a href="{% url 'category' article.author.name %}"
+                                               class="composs-button composs-button-green">View more
+                                                articles from this author</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="composs-comments">
+                                        <div class="composs-secondary-title">
+                                            <a href="#writeacomment" class="right composs-button">Leave a response</a>
+                                            <strong><i class="material-icons">comment</i>3 Responses</strong>
+                                        </div>
+                                        <div class="comment-list">
+                                            <ol id="comments">
+                                                <li class="comment">
+                                                    <div class="comment-block">
+                                                        <a href="#" class="image-avatar">
+                                                            <img src="images\photos\avatar-4.jpg" alt="" title="">
+                                                        </a>
+                                                        <div class="comment-text">
+                                                            <span class="time-stamp right">January 12, 2015</span>
+                                                            <strong class="user-nick"><a href="#">Charley
+                                                                Leroy</a></strong>
+                                                            <div class="shortcode-content">
+                                                                <p>This is a great, easy-to-read list of points. A good
+                                                                    bit of the time, we (general we) think we’re being
+                                                                    understanding and compossionate, but are coming
+                                                                    across as the opposite. I think this is good for or
+                                                                    something can make a big difference.</p>
+                                                            </div>
+                                                            <a class="composs-button read-more-button" href="#"><i
+                                                                    class="material-icons">reply</i>Reply this
+                                                                comment</a>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="children">
+                                                        <li class="comment">
+                                                            <div class="comment-block">
+                                                                <a href="#" class="image-avatar">
+                                                                    <img src="images\photos\avatar-5.jpg" alt=""
+                                                                         title="">
+                                                                </a>
+                                                                <div class="comment-text">
+                                                                    <span class="time-stamp right">January 12, 2015</span>
+                                                                    <strong class="user-nick"><a
+                                                                            href="#">Orange-Themes</a><span
+                                                                            class="user-label">Author</span></strong>
+                                                                    <div class="shortcode-content">
+                                                                        <p>Eu has tempor libris, per nusquam scribentur
+                                                                            ei, velit interesset eu per. In simul
+                                                                            maiestatis mei, ei graeci forensibus vis.
+                                                                            Ferri debitis salutatus pri in, duo in
+                                                                            disputando adversarium, at per solum omnium
+                                                                            disputando. An mollis delicata adolescens
+                                                                            eum.</p>
+                                                                    </div>
+                                                                    <a class="composs-button read-more-button" href="#"><i
+                                                                            class="material-icons">reply</i>Reply this
+                                                                        comment</a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="comment">
+                                                    <div class="comment-block">
+                                                        <a href="#" class="image-avatar">
+                                                            <img src="images\photos\avatar-6.jpg" alt="" title="">
+                                                        </a>
+                                                        <div class="comment-text">
+                                                            <span class="time-stamp right">January 12, 2015</span>
+                                                            <strong class="user-nick"><a href="#">Jane
+                                                                Arabella</a></strong>
+                                                            <div class="shortcode-content">
+                                                                <p>Tota argumentum nec in. Sed an everti melius
+                                                                    eleifend. Et tation legere referrentur eos. Duo erat
+                                                                    tempor ea.</p>
+                                                            </div>
+                                                            <a class="composs-button read-more-button" href="#"><i
+                                                                    class="material-icons">reply</i>Reply this
+                                                                comment</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+
+                                    <div class="composs-comments">
+                                        <div class="composs-secondary-title">
+                                            <!-- <a href="#comments" class="right composs-button">all responses</a> -->
+                                            <strong><i class="material-icons">mode_edit</i>Leave a response</strong>
+                                        </div>
+                                        <div class="comment-form">
+                                            <div id="respond" class="comment-respond">
+
+                                                <form action="#" method="post" class="comment-form">
+                                                    {% csrf_token %}
+                                                    <div class="comment-info">
+                                                        <strong>Your data will be safe!</strong>
+                                                        <span>Your e-mail address will not be published. Also other data will not be shared with third person.</span>
+
+
+                                                        {% if form.non_field_errors %}
+                                                        {% for error in form.non_field_errors %}
+                                                        <strong>{{error}}</strong>
+                                                        {% endfor %}
+                                                        {% endif %}
+                                                        <div class="contact-form-content">
+                                                            <p class="contact-form-user">
+                                                                <label class="label-input">
+                                                                    {{form.name.errors}}
+                                                                    <span>Nickname<i class="required">*</i></span>
+                                                                    <input type="text" placeholder="Nickname"
+                                                                           name="name"
+                                                                           {% if form.name.value %}
+                                                                           value="{{form.name.value}}">
+                                                                    {% endif %}
+                                                                </label>
+                                                            </p>
+                                                            <p class="contact-form-email">
+                                                                <label class="label-input">
+                                                                    {{form.email.errors}}
+                                                                    <span>E-mail<i class="required">*</i></span>
+                                                                    <input type="email" placeholder="E-mail"
+                                                                           name="email"
+                                                                           {% if form.email.value %}
+                                                                           value="{{form.email.value}}">
+                                                                    {% endif %}
+
+                                                                </label>
+                                                            </p>
+                                                            <p class="contact-form-comment">
+                                                                <label class="label-input">
+                                                                    {{form.comment.errors}}
+                                                                    <span>Comment text<i class="required">*</i></span>
+                                                                    <textarea name="comment"
+                                                                              placeholder="Comment text">{% if form.comment.value %}{{form.comment.value}}{% endif %}</textarea>
+                                                                </label>
+                                                            </p>
+                                                            <p class="form-submit">
+                                                                <input name="submit" type="submit" id="submit"
+                                                                       class="submit button" value="Post a Comment">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- END .composs-panel -->
+                        </div>
+
+
+                        <!-- END .composs-main-content -->
+                    </div>
+                </div>
+
+
+                {%include 'chunks/sidebar.html'%}
+
+            </div>
+            <!-- END .wrapper -->
+        </div>
+
+        <!-- BEGIN .content -->
+    </div>
+
+
+    <!-- Scripts -->
+    {%include 'chunks/footer.html'%}
+
+    <!-- END body -->
+    </body>
+    <!-- END html -->
+</html>

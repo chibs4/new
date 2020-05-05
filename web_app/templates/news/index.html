@@ -1,0 +1,70 @@
+﻿{% load static %}
+<!DOCTYPE HTML>
+<!-- BEGIN html -->
+<html lang="en">
+<head>
+    <title>Wcbsports|Home</title>
+    {% include 'chunks/header.html' %}
+
+    <!-- BEGIN .content -->
+    <div class="content">
+
+        <!-- BEGIN .wrapper -->
+        <div class="wrapper">
+
+            <div class="content-wrapper">
+
+                <!-- BEGIN .composs-main-content -->
+                <div class="composs-main-content composs-main-content-s-1">
+
+                    <!-- BEGIN .composs-panel -->
+                    <div class="composs-panel">
+
+                        <div class="composs-panel-title">
+                            <strong>Most recent articles</strong>
+                        </div>
+
+                        <div class="composs-panel-inner">
+
+                            <div class="composs-blog-list lets-do-1">
+                                {%for article in page_obj %}
+                                <div class="item">
+                                    <div class="item-header">
+                                        <a href="#" class="img-read-later-button">Read later</a>
+                                        <a href="post.html"><img src="{{article.main_image.url}}" alt=""></a>
+                                    </div>
+                                    <div class="item-content">
+                                        <h2><a href="{% url 'post' article.slug %}">{{article.name}}</a></h2>
+                                        <span class="item-meta">
+													<span class="item-meta-item"><i
+                                                            class="material-icons">access_time</i>{{article.pub_date}}</span>
+												</span>
+                                        <p>{{article.short_description|safe}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+                            </div>
+
+                        </div>
+                        {% include 'chunks/pagination.html'%}
+
+                        <!-- END .composs-panel -->
+                    </div>
+
+                    <!-- END .composs-main-content -->
+                </div>
+                {% include 'chunks/sidebar.html' %}
+            </div>
+
+            <!-- END .wrapper -->
+        </div>
+
+        <!-- BEGIN .content -->
+    </div>
+
+    {% include 'chunks/footer.html' %}
+    </body>
+    <!-- END html -->
+</html>
