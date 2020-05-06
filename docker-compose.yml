@@ -2,5 +2,27 @@ version: '3.3'
 services:
   nginx:
     build: ./nginx
+    volumes:
+      - ./web_app/static_root:/code/static_root
+      - ./web_app/media:/code/media
     ports:
-      - "80:80"
+      - "5555:80"
+    depends_on:
+      - web
+
+  web:
+    build: ./web_app
+    env_file: ./my.env
+    command: /code/run.sh
+    volumes:
+      - ./web_app:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    env_file: ./my.env
+    ports:
+      - "5454:5432"
