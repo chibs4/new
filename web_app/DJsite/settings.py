@@ -26,9 +26,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-INTERNAL_IPS = ['127.0.0.1']
+if DEBUG:
+    # `debug` is only True in templates if the vistor IP is in INTERNAL_IPS.
+    INTERNAL_IPS = type(str('c'), (), {'__contains__': lambda *a: True})()
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+SITE_ID = 1
 
 # Application definition
 
@@ -39,11 +43,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
     'news.apps.NewsConfig',
     'django_summernote',
     'debug_toolbar',
+    'easy_thumbnails',
+
 
 ]
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'post': {'size': (800, 460), 'crop': True},
+    },
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,7 +85,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'news.context_processor.menu_categories'
+                'news.context_processor.menu_categories',
+                'news.context_processor.popular_articles',
+                'news.context_processor.tags',
             ],
         },
     },
@@ -97,6 +115,19 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'cache:11211',
+    }
+}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': '/var/tmp/django_cache',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

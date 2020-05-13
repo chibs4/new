@@ -1,11 +1,23 @@
 <div class="composs-panel-pager">
     {% if page_obj.has_previous %}
+    {% if request.GET.q %}
+    <a class="prev page-numbers" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left"></i>Previous</a>
+    {% else %}
     <a class="prev page-numbers" href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-double-left"></i>Previous</a>
     {% endif%}
+    {% endif %}
     {% for p in paginator.page_range %}
+    {% if request.GET.q %}
+    <a class="page-numbers" href="?q={{ request.GET.q }}&page={{p}}">{{p}}</a>
+    {% else %}
     <a class="page-numbers" href="?page={{p}}">{{p}}</a>
+    {% endif%}
     {% endfor %}
     {% if page_obj.has_next %}
+    {% if request.GET.q %}
+    <a class="next page-numbers" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">Next<i class="fa fa-angle-double-right"></i></a>
+    {% else %}
     <a class="next page-numbers" href="?page={{page_obj.next_page_number}}">Next<i class="fa fa-angle-double-right"></i></a>
+    {% endif %}
     {% endif %}
 </div>

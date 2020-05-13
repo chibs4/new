@@ -12,10 +12,17 @@ from .models import Author, Article, Comment, Category, Tag
 #             Thread(target=skysports_crawler, args=()).start()
 # get_fresh_news.short_description = 'Get fresh articles'
 
+# class NoCacheAdmin(admin.ModelAdmin):
+#     def get_urls(self):
+#         urls = super().get_urls()
+#         my_urls = [
+#             path('admin/', self.admin_site.admin_view(self.my_view))
+#         ]
+#         return my_urls + urls
 
 class ArticleAdmin(SummernoteModelAdmin):
     summernote_fields = ('content,short_description')
-    list_display = ('name', 'pub_date', 'author', 'image_code')
+    list_display = ('name', 'pub_date', 'author', 'image_code','views')
     search_fields = ('name',)
     list_filter = ('author', 'pub_date', 'categories')
 

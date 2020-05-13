@@ -1,12 +1,13 @@
-﻿{% load static %}
+﻿{% load thumbnail %}
+{% load static %}
 <!DOCTYPE HTML>
 <!-- BEGIN html -->
 <html lang="en">
 <head>
-    <title>Wcbsports|Post</title>
-    {% include 'chunks/header.html' %}
-    <!-- BEGIN body -->
-    <!-- <body> -->
+<title>Wcbsports|{{article.name|safe}}</title>
+<meta name="description" content=" {%block description%}{{article.short_description|title}}{% endblock %}">
+<link rel="canonical" href="{% block canonical %}{{ request.scheme }}://{{ request.get_host }}{% url 'post' object.slug %}{% endblock %}">
+{% include 'chunks/header.html' %}
 
 
     <!-- BEGIN .content -->
@@ -37,7 +38,7 @@
 
                                     <div class="composs-main-article-head">
                                         <div class="composs-main-article-media">
-                                            <img src="{{article.main_image.url}}" alt="">
+                                            <img src="{{article.main_image|thumbnail_url:'post'}}" alt="">
                                         </div>
                                         <div class="composs-main-article-meta">
                                             <span class="item"><i class="material-icons">access_time</i>{{article.pub_date}}</span>
@@ -77,81 +78,27 @@
 
                                     <div class="composs-comments">
                                         <div class="composs-secondary-title">
-                                            <a href="#writeacomment" class="right composs-button">Leave a response</a>
+                                            <a href="#write" class="right composs-button">Leave a response</a>
                                             <strong><i class="material-icons">comment</i>3 Responses</strong>
                                         </div>
                                         <div class="comment-list">
                                             <ol id="comments">
+                                            {% for comment in article.comments.all %}
                                                 <li class="comment">
                                                     <div class="comment-block">
-                                                        <a href="#" class="image-avatar">
-                                                            <img src="images\photos\avatar-4.jpg" alt="" title="">
+                                                        <a href="" class="image-avatar">
+                                                            <img src="{% static 'images/no-avatar-50.jpg' %}" alt="" title="">
                                                         </a>
                                                         <div class="comment-text">
-                                                            <span class="time-stamp right">January 12, 2015</span>
-                                                            <strong class="user-nick"><a href="#">Charley
-                                                                Leroy</a></strong>
+                                                            <span class="time-stamp right">{{comment.timestamp}}</span>
+                                                            <strong class="user-nick"><a href="#">{{comment.name}}</a></strong>
                                                             <div class="shortcode-content">
-                                                                <p>This is a great, easy-to-read list of points. A good
-                                                                    bit of the time, we (general we) think we’re being
-                                                                    understanding and compossionate, but are coming
-                                                                    across as the opposite. I think this is good for or
-                                                                    something can make a big difference.</p>
+                                                                <p>{{ comment.comment}}</p>
                                                             </div>
-                                                            <a class="composs-button read-more-button" href="#"><i
-                                                                    class="material-icons">reply</i>Reply this
-                                                                comment</a>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="children">
-                                                        <li class="comment">
-                                                            <div class="comment-block">
-                                                                <a href="#" class="image-avatar">
-                                                                    <img src="images\photos\avatar-5.jpg" alt=""
-                                                                         title="">
-                                                                </a>
-                                                                <div class="comment-text">
-                                                                    <span class="time-stamp right">January 12, 2015</span>
-                                                                    <strong class="user-nick"><a
-                                                                            href="#">Orange-Themes</a><span
-                                                                            class="user-label">Author</span></strong>
-                                                                    <div class="shortcode-content">
-                                                                        <p>Eu has tempor libris, per nusquam scribentur
-                                                                            ei, velit interesset eu per. In simul
-                                                                            maiestatis mei, ei graeci forensibus vis.
-                                                                            Ferri debitis salutatus pri in, duo in
-                                                                            disputando adversarium, at per solum omnium
-                                                                            disputando. An mollis delicata adolescens
-                                                                            eum.</p>
-                                                                    </div>
-                                                                    <a class="composs-button read-more-button" href="#"><i
-                                                                            class="material-icons">reply</i>Reply this
-                                                                        comment</a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="comment">
-                                                    <div class="comment-block">
-                                                        <a href="#" class="image-avatar">
-                                                            <img src="images\photos\avatar-6.jpg" alt="" title="">
-                                                        </a>
-                                                        <div class="comment-text">
-                                                            <span class="time-stamp right">January 12, 2015</span>
-                                                            <strong class="user-nick"><a href="#">Jane
-                                                                Arabella</a></strong>
-                                                            <div class="shortcode-content">
-                                                                <p>Tota argumentum nec in. Sed an everti melius
-                                                                    eleifend. Et tation legere referrentur eos. Duo erat
-                                                                    tempor ea.</p>
-                                                            </div>
-                                                            <a class="composs-button read-more-button" href="#"><i
-                                                                    class="material-icons">reply</i>Reply this
-                                                                comment</a>
                                                         </div>
                                                     </div>
                                                 </li>
+                                                {% endfor %}
                                             </ol>
                                         </div>
                                     </div>
@@ -164,7 +111,7 @@
                                         <div class="comment-form">
                                             <div id="respond" class="comment-respond">
 
-                                                <form action="#" method="post" class="comment-form">
+                                                <form action="#write" method="post" class="comment-form">
                                                     {% csrf_token %}
                                                     <div class="comment-info">
                                                         <strong>Your data will be safe!</strong>
