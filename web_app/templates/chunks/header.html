@@ -18,6 +18,7 @@
 <link type="text/css" rel="stylesheet" href="{% static '\css\ot-lightbox.min.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static '\css\shortcodes.min.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static '\css\responsive.min.css' %}">
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,9 +40,6 @@
 				font-family: Arial, sans-serif;
 				color: #5e5e5e;
 			}*/
-
-
-
 </style>
 
 <!--    &lt;!&ndash; Demo Only &ndash;&gt;-->
@@ -61,28 +59,15 @@
     <div class="header">
 
         <!-- BEGIN .wrapper -->
-        <div class="wrapper">
 
-            <div class="header-content">
-
-                <div class="header-content-logo">
-                    <a href="{% url 'homepage' %}"><img src="{% static 'images\logo.png' %}"
-                                                        data-ot-retina="{% static 'images\logo.png' %}" alt=""></a>
-                </div>
-
-                <div class="header-content-o">
-                    <a href="#" target="_blank"><img src="{% static 'images\o1.jpg' %}" alt=""></a>
-                </div>
-
-            </div>
 
             <div class="main-menu-placeholder wrapper">
                 <nav id="main-menu">
                     <ul>
                         <li><a href="{% url 'homepage' %}"><span>Homepage</span></a></li>
                         <li><a href="{% url 'category' 'football' %}"><span>Football</span></a></li>
-                        <li><a href="{% url 'category' 'nba' %}"><span>NBA</span></a></li>
-                        <li><a href="{% url 'category' 'nfl' %}"><span>NFL</span></a></li>
+                        <li><a href="{% url 'category' 'basketball' %}"><span>Basketball</span></a></li>
+                        <li><a href="{% url 'category' 'cricket' %}"><span>Cricket</span></a></li>
                         <li><a href="{% url 'category' 'tennis' %}"><span>Tennis</span></a></li>
                         <li><a href="{% url 'category' 'boxing' %}"><span>Boxing</span></a></li>
                         <li><a href="{% url 'category' 'f1' %}"><span>F1</span></a></li>

@@ -38,7 +38,7 @@
 
                                     <div class="composs-main-article-head">
                                         <div class="composs-main-article-media">
-                                            <img src="{{article.main_image|thumbnail_url:'post'}}" alt="">
+                                            <img src={{article.main_image}} alt="">
                                         </div>
                                         <div class="composs-main-article-meta">
                                             <span class="item"><i class="material-icons">access_time</i>{{article.pub_date}}</span>
@@ -50,7 +50,7 @@
                                                 {% endfor %}
                                             </span>
                                         </div>
-                                        <p>{{article.short_description|safe}}</p>
+                                        <p>{{article.short_description}}</p>
                                     </div>
 
                                     <div class="shortcode-content">
@@ -66,7 +66,7 @@
 
                                     <div class="composs-author-block">
                                         <div class="item-header">
-                                            <a href="#"><img src="{{article.author.avatar.url}}" alt=""></a>
+                                            <a href="#"><img src="{{article.author.avatar}}" alt=""></a>
                                         </div>
                                         <div class="item-content">
                                             <strong>{{article.author.name}}</strong>
@@ -77,10 +77,6 @@
                                     </div>
 
                                     <div class="composs-comments">
-                                        <div class="composs-secondary-title">
-                                            <a href="#write" class="right composs-button">Leave a response</a>
-                                            <strong><i class="material-icons">comment</i>3 Responses</strong>
-                                        </div>
                                         <div class="comment-list">
                                             <ol id="comments">
                                             {% for comment in article.comments.all %}

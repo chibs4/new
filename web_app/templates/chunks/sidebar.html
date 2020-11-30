@@ -30,7 +30,7 @@
             <div class="item">
                 <div class="item-header">
                     <a href="#" class="img-read-later-button rm-btn-small">Read later</a>
-                    <a href="{% url 'post' popular.slug %}"><img src="{{popular.main_image.url}}" alt=""></a>
+                    <a href="{% url 'post' popular.slug %}"><img src={{popular.main_image}} alt=""></a>
                 </div>
                 <div class="item-content">
                     <h4><a href="{% url 'post' popular.slug %}">{{popular.name}}</a></h4>
@@ -49,27 +49,15 @@
 
     <!-- BEGIN .widget -->
     <div class="widget">
-        <h3>Latest photo gallery</h3>
+        <h3>News in images</h3>
         <div class="widget-content ot-w-gallery-list">
-
             <div class="item">
                 <div class="item-header">
-                    <div class="item-photo"><a href="photo-gallery-single.html"><img
-                            src="{% static 'images\photos\image-12.jpg' %}" alt=""></a></div>
-                    <div class="item-photo"><a href="photo-gallery-single.html"><img
-                            src="{% static 'images\photos\image-13.jpg' %}" alt=""></a></div>
-                    <div class="item-photo"><a href="photo-gallery-single.html"><img
-                            src="{% static 'images\photos\image-15.jpg' %}" alt=""></a></div>
-                    <div class="item-photo"><a href="photo-gallery-single.html"><img
-                            src="{% static 'images\photos\image-14.jpg' %}" alt=""></a></div>
-                </div>
-                <div class="item-content">
-                    <h4><a href="photo-gallery-single.html">Te ius esse sapientem qualisque et hinc elit
-                        mentitum vim</a></h4>
-                    <!-- <p>Cum an officiis integebat neces sitat bus, impedi tes...</p> -->
-                    <span class="item-meta">
-												<span class="item-meta-item"><i class="material-icons">access_time</i>January 12, 2015</span>
-											</span>
+                    {% for article in random_images %}
+                    <div class="item-photo"><a href="{% url 'post' article.slug %}">
+                        <img src={{article.main_image}} alt=""></a>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 

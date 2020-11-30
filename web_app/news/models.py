@@ -1,12 +1,15 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+import datetime
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True, default=1)
+    slug = models.SlugField(max_length=255, unique=True)
     in_menu = models.BooleanField(default=False)
     order = models.IntegerField(default=1)
+    number_of_articles = models.IntegerField(default=1)
 
     objects = models.Manager()
 
@@ -21,25 +24,39 @@ class Category(models.Model):
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=255)
-    avatar = models.ImageField(upload_to='images/avatars', default='images/avatars/noava.png')
-    bio = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,unique=True)
+    avatar = models.ImageField(upload_to='images/avatars', default='/static/images/noava.png')
+    bio = models.CharField(max_length=255,default='No bio')
 
     objects = models.Manager()
 
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    number_of_articles = models.IntegerField(default=1)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('category',args=(self.slug,))
+
 
 class Article(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
     content = models.TextField()
-    short_description = models.TextField()
-    main_image = models.ImageField(upload_to='images')
-    pub_date = models.DateTimeField(auto_now_add=True)
-    categories = models.ManyToManyField(to=Category)
-    author = models.ForeignKey(to=Author, on_delete=models.CASCADE, related_name='author')
+    short_description = models.TextField(default='No description')
+    main_image = models.CharField(max_length=500, default='/static/images/photos/image-8.jpg')
+    pub_date = models.CharField(max_length=255,default=str(datetime.datetime.now()))
+    categories = models.ManyToManyField(to=Category,default=None)
+    tags = models.ManyToManyField(to=Tag,default=None)
+    author = models.ForeignKey(to=Author, on_delete=models.CASCADE, related_name='author', default=1)
     views = models.IntegerField('views', default=0)
 
 
@@ -63,17 +80,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment[:21]
-
-
-class Tag(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True)
-    articles = models.ManyToManyField(to=Article)
-
-    objects = models.Manager()
-
-    def __str__(self):
-        return self.name
 
 
 class Mag(models.Model):

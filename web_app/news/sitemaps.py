@@ -1,7 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from .models import Article,Category
-
-
+from .models import Article,Category,Tag
 
 
 class ArticleSitemap(Sitemap):
@@ -14,6 +12,7 @@ class ArticleSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.pub_date
 
+
 class CategorySitemap(Sitemap):
     changefreq = "daily"
     priority = 0.9
@@ -21,8 +20,16 @@ class CategorySitemap(Sitemap):
     def items(self):
         return Category.objects.all()
 
+class TagSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.9
+
+    def items(self):
+        return Tag.objects.all()
+
 
 sitemaps = {
     'articles': ArticleSitemap,
-    'categories': CategorySitemap
+    'categories': CategorySitemap,
+    'tags': TagSitemap
 }

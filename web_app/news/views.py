@@ -3,6 +3,7 @@ from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
 
+
 from .models import Article, Category, Tag, Comment, Author
 from .forms import CommentForm
 
@@ -67,24 +68,16 @@ class CategoryListView(ListView):
             qs = qs.filter(author__name=self.slug)
             if not qs.exists():
                 qs = super().get_queryset()
-                qs = qs.filter(tag__name=self.slug)
+                qs = qs.filter(tags__slug=self.slug)
                 return qs
             return qs
         else:
             return qs
 
 
-class Error404View(TemplateView):
-    template_name = 'news/error-404.html'
-
-
 class RobotsView(TemplateView):
     template_name = 'news/robots.html'
     content_type = 'text/plain'
-
-
-class PhotoGalleryView(TemplateView):
-    template_name = 'photo-gallery.html'
 
 
 class ContactView(TemplateView):

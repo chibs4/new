@@ -12,7 +12,7 @@ services:
 
   web:
     build: ./web_app
-    env_file: ./my.env
+    env_file: web_app/DJsite/.env
     command: /code/run.sh
     volumes:
       - ./web_app:/code
@@ -31,7 +31,7 @@ services:
 
   db:
     image: postgres
-    env_file: ./my.env
+    env_file: web_app/DJsite/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

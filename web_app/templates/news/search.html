@@ -34,7 +34,7 @@
                                 <div class="item">
                                     <div class="item-header">
                                         <a href="#" class="img-read-later-button">Read later</a>
-                                        <a href="post.html"><img src="{{article.main_image.url}}" alt=""></a>
+                                        <a href="{% url 'post' article.slug %}"><img src={{article.main_image}} alt=""></a>
                                     </div>
                                     <div class="item-content">
                                         <h2><a href="{% url 'post' article.slug %}">{{article.name}}</a></h2>
